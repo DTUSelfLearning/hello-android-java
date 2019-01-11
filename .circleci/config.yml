@@ -40,7 +40,7 @@ jobs:
       # Lint testing
       - run:
           name: Lint / Test
-          command: ./gradlew --stacktrace :app:check
+          command: ./gradlew :app:check -x test
 
       # Report test
       - run:

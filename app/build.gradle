@@ -27,6 +27,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     ])
 }
 
+apply from: "../ci.gradle"
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -54,6 +56,10 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
