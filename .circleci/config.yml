@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-25-alpha
+      - image: circleci/android:api-27-alpha
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -25,3 +25,24 @@ jobs:
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
+      - restore_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+
+      # Install RubyGems
+      - run:
+          name: Install RubyGems
+          command: bundle install --path vendor/bundle
+      - save_cache:
+          key: gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Lint testing
+      - run:
+          name: Lint / Test
+          command: ./gradlew --stacktrace :app:check
+
+      # Report test
+      - run:
+          name: Run Danger
+          command: bundle exec danger
