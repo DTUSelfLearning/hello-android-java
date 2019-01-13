@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-   <TextView
-       android:text="vien"
-       android:textSize="24sp"
-       android:layout_width="wrap_content"
 
-       android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/imgHeader"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorAccent" />
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/imgHeader"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-25dp"
+        android:layout_marginRight="25dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_phamhuong" />
+
+</RelativeLayout>
